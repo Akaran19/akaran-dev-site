@@ -28,7 +28,7 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div className="bg-green-50 border border-green-200 rounded p-4">
-        <p className="text-green-800">Thank you for your message! I'll get back to you soon.</p>
+        <p className="text-green-800">Thank you for your message! I&apos;ll get back to you soon.</p>
       </div>
     )
   }
