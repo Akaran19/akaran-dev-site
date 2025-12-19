@@ -9,6 +9,14 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: 'Credit Risk Modeling System',
+    problem: 'How to assess credit risk using machine learning?',
+    description: 'Built a complete credit risk modeling system from scratch using Python and machine learning. Processes real-world financial data, trains models with Scikit-learn, and handles imbalanced datasets. Deployed as an interactive Streamlit dashboard for credit risk evaluation.',
+    techStack: ['Python', 'Scikit-learn', 'Streamlit', 'Machine Learning'],
+    slug: 'credit-risk-modeling',
+    demoUrl: 'https://creditrisk-akaran19.streamlit.app/'
+  },
+  {
     title: 'Generative Agent-Based Model of Language Adoption',
     problem: 'How do languages evolve and spread in populations?',
     description: 'BSc thesis exploring computational models of language change using agent-based simulations. Implemented evolutionary algorithms to model linguistic adaptation and cultural transmission.',

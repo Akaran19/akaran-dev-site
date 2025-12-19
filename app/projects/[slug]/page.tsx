@@ -7,7 +7,16 @@ const projectDetails: Record<string, {
   description: string
   techStack: string[]
   content: string
+  demoUrl?: string
 }> = {
+  'credit-risk-modeling': {
+    title: 'Credit Risk Modeling System',
+    problem: 'How to assess credit risk using machine learning?',
+    description: 'Built a complete credit risk modeling system from scratch using Python and machine learning.',
+    techStack: ['Python', 'Scikit-learn', 'Streamlit', 'Machine Learning'],
+    content: 'This project demonstrates a complete end-to-end data science workflow for credit risk assessment. Starting with real-world financial data processing, the system applies machine learning techniques to evaluate credit risk. Key features include handling imbalanced datasets, model training with Scikit-learn, and an interactive Streamlit dashboard for credit risk evaluation. The project serves as both a practical tool and a learning resource for data science beginners and interview preparation.',
+    demoUrl: 'https://creditrisk-akaran19.streamlit.app/'
+  },
   'generative-agent-model': {
     title: 'Generative Agent-Based Model of Language Adoption',
     problem: 'How do languages evolve and spread in populations?',
@@ -74,6 +83,21 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         <div className="prose max-w-none">
           <p>{project.content}</p>
         </div>
+        {project.demoUrl && (
+          <div className="mt-8">
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              View Live Demo
+              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        )}
       </div>
     </Section>
   )

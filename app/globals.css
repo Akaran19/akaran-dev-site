@@ -12,4 +12,8 @@
   .btn {
     @apply px-4 py-2 bg-accent text-white rounded hover:bg-blue-600 transition-colors;
   }
+  
+  .prose a {
+    @apply text-blue-600 font-semibold underline hover:text-blue-800;
+  }
 }
