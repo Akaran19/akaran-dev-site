@@ -1,0 +1,38 @@
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Screenshots (optional - remove if you want to keep them)
+Screenshot*.png
+
+# Model files (optional - if you want to keep them private)
+# *.pkl
+
+# Temporary files
+*.tmp
+*.temp
