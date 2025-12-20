@@ -21,9 +21,9 @@ const projectDetails: Record<string, {
     title: 'Credit Risk Modeling System',
     problem: 'How to assess credit risk using machine learning?',
     description: 'Built a complete credit risk modeling system from scratch using Python and machine learning.',
-    techStack: ['Python', 'Scikit-learn', 'Streamlit', 'Machine Learning'],
-    content: 'This project demonstrates a complete end-to-end data science workflow for credit risk assessment. Starting with real-world financial data processing, the system applies machine learning techniques to evaluate credit risk. Key features include handling imbalanced datasets, model training with Scikit-learn, and an interactive Streamlit dashboard for credit risk evaluation. The project serves as both a practical tool and a learning resource for data science beginners and interview preparation.',
-    demoUrl: 'https://creditrisk-akaran19.streamlit.app/'
+    techStack: ['Python', 'Scikit-learn', 'Flask', 'Machine Learning', 'Vercel'],
+    content: 'This project demonstrates a complete end-to-end data science workflow for credit risk assessment. Starting with real-world financial data processing, the system applies machine learning techniques to evaluate credit risk. Key features include handling imbalanced datasets, model training with Scikit-learn, and an interactive web application for credit risk evaluation. The project serves as both a practical tool and a learning resource for data science beginners and interview preparation.',
+    demoUrl: 'https://akaran.dev/credit-risk'
   },
   'generative-agent-model': {
     title: 'Generative Agent-Based Model of Language Adoption',
