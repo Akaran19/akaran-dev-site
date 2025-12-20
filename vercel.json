@@ -6,7 +6,7 @@
       "use": "@vercel/next"
     },
     {
-      "src": "credit-risk-app/api/test.py",
+      "src": "api/credit-risk.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "50mb"
@@ -16,11 +16,11 @@
   "routes": [
     {
       "src": "/credit-risk",
-      "dest": "/credit-risk-app/api/index.py"
+      "dest": "/api/credit-risk.py"
     },
     {
       "src": "/credit-risk/(.*)",
-      "dest": "/credit-risk-app/api/index.py"
+      "dest": "/api/credit-risk.py"
     },
     {
       "src": "/(.*)",
