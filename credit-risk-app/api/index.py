@@ -6,9 +6,33 @@ import joblib
 
 app = Flask(__name__)
 
-# Load model and encoders
-model = joblib.load('XGBoost_credit_model.pkl')
-encoders = {col: joblib.load(f'{col}_encoder.pkl') for col in ['Sex', 'Housing', 'Saving accounts', 'Checking account']}
+# Global variables for model and encoders
+model = None
+encoders = None
+
+def load_model_and_encoders():
+    global model, encoders
+    if model is None:
+        try:
+            # Get the directory where this script is located
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            model_path = os.path.join(script_dir, '..', 'XGBoost_credit_model.pkl')
+
+            model = joblib.load(model_path)
+            encoders = {}
+            for col in ['Sex', 'Housing', 'Saving accounts', 'Checking account']:
+                encoder_path = os.path.join(script_dir, '..', f'{col}_encoder.pkl')
+                encoders[col] = joblib.load(encoder_path)
+        except Exception as e:
+            print(f"Error loading model: {e}")
+            raise
+
+# Load model when module is imported
+try:
+    load_model_and_encoders()
+except Exception as e:
+    print(f"Failed to load model on startup: {e}")
+    # Don't raise here, let the routes handle it
 
 # Translations dictionary
 translations = {
@@ -181,7 +205,7 @@ def home():
                 const data = Object.fromEntries(formData);
 
                 try {
-                    const response = await fetch('/api/predict', {
+                    const response = await fetch('/credit-risk/api/predict', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -216,6 +240,10 @@ def home():
 @app.route('/api/predict', methods=['POST'])
 def predict():
     try:
+        # Ensure model is loaded
+        if model is None or encoders is None:
+            load_model_and_encoders()
+
         data = request.get_json()
 
         # Extract form data
@@ -246,4 +274,5 @@ def predict():
         return jsonify({'prediction': prediction})
 
     except Exception as e:
+        print(f"Prediction error: {e}")
         return jsonify({'error': str(e)}), 500
