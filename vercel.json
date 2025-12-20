@@ -8,6 +8,10 @@
     {
       "src": "api/credit-risk.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "api/credit-risk/predict.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
@@ -16,8 +20,8 @@
       "dest": "/api/credit-risk.py"
     },
     {
-      "src": "/credit-risk/(.*)",
-      "dest": "/api/credit-risk.py"
+      "src": "/api/credit-risk/predict",
+      "dest": "/api/credit-risk/predict.py"
     },
     {
       "src": "/(.*)",
