@@ -10,7 +10,7 @@
       "use": "@vercel/python"
     },
     {
-      "src": "api/credit-risk/predict.py",
+      "src": "api/predict.py",
       "use": "@vercel/python"
     }
   ],
@@ -21,7 +21,7 @@
     },
     {
       "src": "/api/credit-risk/predict",
-      "dest": "/api/credit-risk/predict.py"
+      "dest": "/api/predict.py"
     },
     {
       "src": "/(.*)",
