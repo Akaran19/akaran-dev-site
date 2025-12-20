@@ -16,23 +16,38 @@ def load_model_and_encoders():
         try:
             # Get the directory where this script is located
             script_dir = os.path.dirname(os.path.abspath(__file__))
+            print(f"Script directory: {script_dir}")
+
             model_path = os.path.join(script_dir, '..', 'XGBoost_credit_model.pkl')
+            print(f"Model path: {model_path}")
+            print(f"Model file exists: {os.path.exists(model_path)}")
 
             model = joblib.load(model_path)
             encoders = {}
             for col in ['Sex', 'Housing', 'Saving accounts', 'Checking account']:
                 encoder_path = os.path.join(script_dir, '..', f'{col}_encoder.pkl')
+                print(f"Encoder path for {col}: {encoder_path}")
+                print(f"Encoder file exists: {os.path.exists(encoder_path)}")
                 encoders[col] = joblib.load(encoder_path)
+
+            print("Model and encoders loaded successfully")
         except Exception as e:
             print(f"Error loading model: {e}")
+            import traceback
+            traceback.print_exc()
             raise
 
-# Load model when module is imported
+# Try to load model when module is imported
 try:
     load_model_and_encoders()
+    print("Model loaded successfully on startup")
 except Exception as e:
     print(f"Failed to load model on startup: {e}")
     # Don't raise here, let the routes handle it
+
+@app.route('/test')
+def test():
+    return {'status': 'ok', 'model_loaded': model is not None, 'encoders_loaded': encoders is not None}
 
 @app.route('/')
 def home():
