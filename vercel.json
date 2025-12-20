@@ -4,25 +4,9 @@
     {
       "src": "package.json",
       "use": "@vercel/next"
-    },
-    {
-      "src": "api/credit-risk.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "api/predict.py",
-      "use": "@vercel/python"
     }
   ],
   "routes": [
-    {
-      "src": "/credit-risk",
-      "dest": "/api/credit-risk.py"
-    },
-    {
-      "src": "/api/credit-risk/predict",
-      "dest": "/api/predict.py"
-    },
     {
       "src": "/(.*)",
       "dest": "/$1"
