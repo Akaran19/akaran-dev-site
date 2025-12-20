@@ -49,7 +49,9 @@ const projects = [
     problem: 'Streamlining academic peer review process',
     description: 'Built a web platform for managing academic paper submissions and reviews, featuring real-time collaboration and automated matching algorithms.',
     techStack: ['React', 'Supabase', 'TypeScript', 'Tailwind CSS'],
-    slug: 'peerly-platform'
+    slug: 'peerly-platform',
+    demoUrl: 'https://peerly.io',
+    faviconUrl: 'https://peerly.io/favicon.ico'
   }
 ]
 

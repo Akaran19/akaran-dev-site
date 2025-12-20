@@ -50,7 +50,8 @@ const projectDetails: Record<string, {
     problem: 'Streamlining academic peer review process',
     description: 'Built a web platform for managing academic paper submissions and reviews.',
     techStack: ['React', 'Supabase', 'TypeScript', 'Tailwind CSS'],
-    content: 'Developed a full-stack application with real-time notifications, automated reviewer matching based on expertise, and collaborative review workflows.'
+    content: 'Developed a full-stack application with real-time notifications, automated reviewer matching based on expertise, and collaborative review workflows.',
+    demoUrl: 'https://peerly.io'
   }
 }
 
