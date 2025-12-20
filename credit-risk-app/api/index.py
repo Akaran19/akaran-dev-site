@@ -34,6 +34,174 @@ except Exception as e:
     print(f"Failed to load model on startup: {e}")
     # Don't raise here, let the routes handle it
 
+@app.route('/')
+def home():
+    return '''
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Credit Risk Prediction App</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+            .form-group { margin-bottom: 15px; }
+            label { display: block; margin-bottom: 5px; font-weight: bold; }
+            input, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+            button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+            button:hover { background: #0056b3; }
+            .result { margin-top: 20px; padding: 15px; border-radius: 4px; }
+            .good { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+            .bad { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        </style>
+    </head>
+    <body>
+        <h1>Credit Risk Prediction App</h1>
+        <p>Enter the details of the applicant to predict if the credit risk is good or bad.</p>
+
+        <form id="predictionForm">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="18" max="80" value="30" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <select id="sex" name="sex" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="job">Job (0-3):</label>
+                <input type="number" id="job" name="job" min="0" max="3" value="1" required>
+                <small>0: Unskilled and non-resident, 1: Unskilled and resident, 2: Skilled, 3: Highly skilled</small>
+            </div>
+
+            <div class="form-group">
+                <label for="housing">Housing:</label>
+                <select id="housing" name="housing" required>
+                    <option value="own">Own</option>
+                    <option value="free">Free</option>
+                    <option value="rent">Rent</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="saving_accounts">Saving accounts:</label>
+                <select id="saving_accounts" name="saving_accounts" required>
+                    <option value="little">Little (&lt; 50 €)</option>
+                    <option value="moderate">Moderate (50-250 €)</option>
+                    <option value="rich">Rich (250-500 €)</option>
+                    <option value="quite rich">Quite rich (&gt; 500 €)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="checking_account">Checking account:</label>
+                <select id="checking_account" name="checking_account" required>
+                    <option value="little">Little (&lt; 0 €)</option>
+                    <option value="moderate">Moderate (0-100 €)</option>
+                    <option value="rich">Rich (&gt; 100 €)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="credit_amount">Credit Amount:</label>
+                <input type="number" id="credit_amount" name="credit_amount" min="0" value="1000" required>
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duration (months):</label>
+                <input type="number" id="duration" name="duration" min="1" value="12" required>
+            </div>
+
+            <button type="submit">Predict Risk</button>
+        </form>
+
+        <div id="result"></div>
+
+        <script>
+            document.getElementById('predictionForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData);
+
+                try {
+                    const response = await fetch('/credit-risk/api/predict', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+                    const resultDiv = document.getElementById('result');
+
+                    if (result.error) {
+                        resultDiv.innerHTML = '<div class="result bad">Error: ' + result.error + '</div>';
+                    } else if (result.prediction === 1) {
+                        resultDiv.innerHTML = '<div class="result good">The predicted credit risk is <strong>GOOD</strong>.</div>';
+                    } else {
+                        resultDiv.innerHTML = '<div class="result bad">The predicted credit risk is <strong>BAD</strong>.</div>';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerHTML = '<div class="result bad">Error making prediction. Please try again.</div>';
+                }
+            });
+        </script>
+    </body>
+    </html>
+    '''
+
+@app.route('/test')
+def test():
+    return {'status': 'ok', 'message': 'Flask app is working'}
+
+@app.route('/api/predict', methods=['POST'])
+def predict():
+    try:
+        # Ensure model is loaded
+        if model is None or encoders is None:
+            load_model_and_encoders()
+
+        data = request.get_json()
+
+        # Extract form data
+        age = int(data['age'])
+        sex = data['sex']
+        job = int(data['job'])
+        housing = data['housing']
+        saving_accounts = data['saving_accounts']
+        checking_account = data['checking_account']
+        credit_amount = int(data['credit_amount'])
+        duration = int(data['duration'])
+
+        # Prepare input for model
+        input_df = pd.DataFrame({
+            'Age': [age],
+            'Sex': [encoders['Sex'].transform([sex])[0]],
+            'Job': [job],
+            'Housing': [encoders['Housing'].transform([housing])[0]],
+            'Saving accounts': [encoders['Saving accounts'].transform([saving_accounts])[0]],
+            'Checking account': [encoders['Checking account'].transform([checking_account])[0]],
+            'Credit amount': [credit_amount],
+            'Duration': [duration]
+        })
+
+        # Make prediction
+        prediction = int(model.predict(input_df)[0])
+
+        return jsonify({'prediction': prediction})
+
+    except Exception as e:
+        print(f"Prediction error: {e}")
+        return jsonify({'error': str(e)}), 500
+
 # Translations dictionary
 translations = {
     'en': {
