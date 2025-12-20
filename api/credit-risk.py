@@ -13,11 +13,10 @@ def home():
     <body>
         <h1>Credit Risk App is working!</h1>
         <p>This is a test page to verify the Flask app is running on Vercel.</p>
-        <p>Current working directory: ''' + str(__file__) + '''</p>
+        <p>Flask app successfully deployed!</p>
     </body>
     </html>
     '''
 
-@app.route('/api/test')
-def test():
-    return {'message': 'API is working!', 'status': 'success'}
+# Vercel expects the Flask app to be exported as 'app'
+# This is required for Vercel to find and run the Flask application

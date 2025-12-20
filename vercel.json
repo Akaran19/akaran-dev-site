@@ -7,10 +7,7 @@
     },
     {
       "src": "api/credit-risk.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
