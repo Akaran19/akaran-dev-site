@@ -9,12 +9,21 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: 'Rapid Recall - LUBS2850 Marketing Quiz',
+    problem: 'How to make marketing concepts engaging and memorable?',
+    description: 'Interactive educational mini-game for mastering LUBS2850 Marketing concepts. Built with modern web technologies, featuring a Kahoot-style interface, persistent leaderboards, and responsive glassmorphism design.',
+    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Firebase Firestore'],
+    slug: 'rapid-recall-marketing-quiz',
+    demoUrl: 'https://akaran19.github.io/LUBS2850_flashcards/',
+    faviconUrl: 'https://akaran19.github.io/LUBS2850_flashcards/rapid-recall-favicon.svg'
+  },
+  {
     title: 'Credit Risk Modeling System',
     problem: 'How to assess credit risk using machine learning?',
     description: 'Built a complete credit risk modeling system from scratch using Python and machine learning. Processes real-world financial data, trains models with Scikit-learn, and handles imbalanced datasets. Deployed as an interactive Streamlit dashboard for credit risk evaluation.',
     techStack: ['Python', 'Scikit-learn', 'Streamlit', 'Machine Learning'],
     slug: 'credit-risk-modeling',
-    demoUrl: 'https://creditrisk-akaran19.streamlit.app/'
+    demoUrl: 'https://akaran.dev/credit-risk',
   },
   {
     title: 'Generative Agent-Based Model of Language Adoption',

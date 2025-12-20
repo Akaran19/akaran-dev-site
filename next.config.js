@@ -9,6 +9,12 @@ const nextConfig = {
         port: '',
         pathname: '/favicon.ico',
       },
+      {
+        protocol: 'https',
+        hostname: 'akaran19.github.io',
+        port: '',
+        pathname: '/LUBS2850_flashcards/rapid-recall-favicon.svg',
+      },
     ],
   },
 }

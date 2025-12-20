@@ -9,6 +9,14 @@ const projectDetails: Record<string, {
   content: string
   demoUrl?: string
 }> = {
+  'rapid-recall-marketing-quiz': {
+    title: 'Rapid Recall - LUBS2850 Marketing Quiz',
+    problem: 'How to make marketing concepts engaging and memorable?',
+    description: 'Interactive educational mini-game for mastering LUBS2850 Marketing concepts.',
+    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Firebase Firestore'],
+    content: 'A modern, interactive educational mini-game built for LUBS2850 Marketing students at the University of Leeds. Features a Kahoot-style interface with timer, progress tracking, and visual feedback. Includes a persistent global leaderboard using Firebase Firestore for cross-device score tracking. The app uses glassmorphism design with smooth animations and is fully responsive across desktop, tablet, and mobile devices. Built with vanilla JavaScript and modern CSS, requiring no build tools and running entirely in the browser.',
+    demoUrl: 'https://akaran19.github.io/LUBS2850_flashcards/'
+  },
   'credit-risk-modeling': {
     title: 'Credit Risk Modeling System',
     problem: 'How to assess credit risk using machine learning?',
