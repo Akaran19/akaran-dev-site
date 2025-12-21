@@ -1,6 +1,7 @@
 import joblib
 import pandas as pd
 import numpy as np
+import json
 from onnxmltools.convert import convert_xgboost
 from onnx import save_model
 
@@ -10,7 +11,6 @@ model = joblib.load('XGBoost_credit_model.pkl')
 encoders = {col: joblib.load(f'{col}_encoder.pkl') for col in ['Sex', 'Housing', 'Saving accounts', 'Checking account']}
 
 # Create sample input data to define the ONNX model input shape
-# The model expects: Age, Sex, Job, Housing, Saving accounts, Checking account, Credit amount, Duration
 sample_input = pd.DataFrame({
     'Age': [30.0],
     'Sex': [0],  # encoded value
@@ -25,10 +25,11 @@ sample_input = pd.DataFrame({
 print("Sample input shape:", sample_input.shape)
 print("Sample input dtypes:", sample_input.dtypes)
 
-# Convert to ONNX format using onnxmltools
+# Convert to ONNX format using onnxmltools (XGBoost specific)
 print("Converting model to ONNX...")
-# onnxmltools expects initial_types as a list of tuples: (name, type, shape)
-initial_types = [('input', np.float32, sample_input.shape)]
+# Convert sample_input to float32 numpy array for ONNX
+sample_input_array = sample_input.values.astype(np.float32)
+initial_types = [('input', np.float32, sample_input_array.shape)]
 onnx_model = convert_xgboost(model, initial_types=initial_types)
 
 # Save the ONNX model
@@ -38,9 +39,7 @@ save_model(onnx_model, 'credit_risk_model.onnx')
 print("Model conversion completed!")
 print("ONNX model saved as: credit_risk_model.onnx")
 
-# Also save the encoders as JSON for JavaScript use
-import json
-
+# Save encoders as JSON for JavaScript use
 encoders_dict = {}
 for col, encoder in encoders.items():
     encoders_dict[col] = {
@@ -53,7 +52,9 @@ with open('encoders.json', 'w') as f:
 
 print("Encoders saved as: encoders.json")
 
-with open('encoders.json', 'w') as f:
-    json.dump(encoders_dict, f, indent=2)
-
-print("Encoders saved as: encoders.json")
+# Test the conversion by making a prediction with the original model
+print("\nTesting original model...")
+test_input = sample_input_array[0]
+print("Test input:", test_input)
+prediction = model.predict(sample_input)[0]
+print("Original model prediction:", prediction)

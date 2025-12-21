@@ -21,7 +21,7 @@ const projects = [
     title: 'Credit Risk Modeling System',
     problem: 'How to assess credit risk using machine learning?',
     description: 'Built a complete credit risk modeling system from scratch using Python and machine learning. Processes real-world financial data, trains models with Scikit-learn, and handles imbalanced datasets. Deployed as an interactive web application integrated into my portfolio for credit risk evaluation.',
-    techStack: ['Python', 'Scikit-learn', 'Flask', 'Machine Learning', 'Vercel'],
+    techStack: ['Python', 'Scikit-learn', 'Flask', 'Machine Learning'],
     slug: 'credit-risk-modeling',
     demoUrl: 'https://akaran.dev/credit-risk',
   },
