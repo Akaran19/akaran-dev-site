@@ -2,8 +2,8 @@ export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    // Call the deployed XGBoost API (replace with your actual Railway/Render URL)
-    const API_URL = process.env.CREDIT_RISK_API_URL || 'https://your-railway-app-url.up.railway.app';
+    // Call the deployed XGBoost API on Railway
+    const API_URL = process.env.CREDIT_RISK_API_URL || 'https://credit-risk-app-production-fcbd.up.railway.app';
 
     const response = await fetch(`${API_URL}/api/predict`, {
       method: 'POST',
