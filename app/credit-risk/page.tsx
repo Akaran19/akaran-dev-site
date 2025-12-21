@@ -48,15 +48,14 @@ export default function CreditRiskPage() {
   };
 
   return (
-    <div className="bg-white text-gray-900 min-h-screen">
-      <div style={{ 
-        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        maxWidth: "800px", 
-        margin: "0 auto", 
-        padding: "20px",
-        background: "#f5f5f5",
-        minHeight: "100vh"
-      }}>
+    <div style={{
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      maxWidth: "800px",
+      margin: "0 auto",
+      padding: "20px",
+      background: "#f5f5f5",
+      minHeight: "100vh"
+    }}>
       <div style={{
         background: "white",
         padding: "30px",
