@@ -13,42 +13,56 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ title, problem, description, techStack, slug, demoUrl, faviconUrl }: ProjectCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 border">
+    <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-600 transition-colors">
       <Link href={`/projects/${slug}`} className="block">
-        <div className="flex items-start gap-3 mb-3">
+        <div className="flex items-start gap-3 mb-4">
           {faviconUrl && (
             <Image
               src={faviconUrl}
               alt={`${title} favicon`}
-              width={40}
-              height={40}
-              className="rounded-sm flex-shrink-0"
+              width={32}
+              height={32}
+              className="rounded-sm flex-shrink-0 mt-1"
             />
           )}
           <div className="flex-1">
-            <h3 className="text-xl font-semibold">{title}</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
           </div>
         </div>
-        <p className="text-accent font-medium mb-3">{problem}</p>
-        <p className="text-gray-600 mb-4">{description}</p>
+
+        <div className="space-y-3 mb-4">
+          <div>
+            <div className="text-xs text-gray-400 font-mono uppercase tracking-wider mb-1">Problem</div>
+            <p className="text-gray-300 text-sm leading-relaxed">{problem}</p>
+          </div>
+
+          <div>
+            <div className="text-xs text-gray-400 font-mono uppercase tracking-wider mb-1">Approach</div>
+            <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+          </div>
+        </div>
       </Link>
-      <div className="flex flex-wrap gap-2 mb-4">
-        {techStack.map((tech) => (
-          <span key={tech} className="px-2 py-1 bg-gray-100 text-sm rounded">
-            {tech}
-          </span>
-        ))}
+
+      <div className="border-t border-gray-800 pt-4">
+        <div className="flex flex-wrap gap-2 mb-3">
+          {techStack.map((tech) => (
+            <span key={tech} className="px-2 py-1 bg-gray-800 text-gray-300 text-xs font-mono rounded">
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {demoUrl && (
+          <a
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-gray-400 hover:text-white text-sm font-mono transition-colors"
+          >
+            Live Demo →
+          </a>
+        )}
       </div>
-      {demoUrl && (
-        <a
-          href={demoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center text-accent hover:text-blue-700 font-medium"
-        >
-          View Live Demo →
-        </a>
-      )}
     </div>
   )
 }

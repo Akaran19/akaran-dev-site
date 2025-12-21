@@ -5,15 +5,43 @@
 @layer base {
   html {
     font-family: Inter, system-ui, sans-serif;
+    background-color: #0a0a0a; /* Near-black background */
+    color: #ffffff; /* High contrast white text */
+  }
+
+  body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+  }
+
+  /* Monospaced font for code/tech elements */
+  .mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
   }
 }
 
 @layer components {
   .btn {
-    @apply px-4 py-2 bg-accent text-white rounded hover:bg-blue-600 transition-colors;
+    @apply px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded hover:bg-gray-600 transition-colors;
   }
-  
+
   .prose a {
-    @apply text-blue-600 font-semibold underline hover:text-blue-800;
+    @apply text-blue-400 font-semibold underline hover:text-blue-300;
+  }
+
+  /* Grid-based layout utilities */
+  .grid-section {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  /* Subtle borders and dividers */
+  .divider {
+    @apply border-t border-gray-700 my-8;
+  }
+
+  /* Card styling for projects */
+  .card {
+    @apply bg-gray-900 border border-gray-700 rounded p-6 hover:border-gray-600 transition-colors;
   }
 }

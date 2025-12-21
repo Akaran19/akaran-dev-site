@@ -27,16 +27,16 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="bg-green-50 border border-green-200 rounded p-4">
-        <p className="text-green-800">Thank you for your message! I&apos;ll get back to you soon.</p>
+      <div className="bg-green-900/20 border border-green-800 rounded-lg p-4">
+        <p className="text-green-400">Thank you for your message! I&apos;ll get back to you soon.</p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+        <label htmlFor="name" className="block text-sm font-mono text-gray-400 uppercase tracking-wider mb-2">Name</label>
         <input
           type="text"
           id="name"
@@ -44,11 +44,12 @@ export default function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent"
+          className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-gray-600 transition-colors"
+          placeholder="Your name"
         />
       </div>
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+        <label htmlFor="email" className="block text-sm font-mono text-gray-400 uppercase tracking-wider mb-2">Email</label>
         <input
           type="email"
           id="email"
@@ -56,11 +57,12 @@ export default function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent"
+          className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-gray-600 transition-colors"
+          placeholder="your.email@example.com"
         />
       </div>
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+        <label htmlFor="message" className="block text-sm font-mono text-gray-400 uppercase tracking-wider mb-2">Message</label>
         <textarea
           id="message"
           name="message"
@@ -68,10 +70,11 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           rows={5}
-          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent"
+          className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-gray-600 transition-colors resize-none"
+          placeholder="Your message..."
         />
       </div>
-      <button type="submit" className="btn">
+      <button type="submit" className="w-full px-6 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors rounded-lg">
         Send Message
       </button>
     </form>

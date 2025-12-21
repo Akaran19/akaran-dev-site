@@ -3,57 +3,95 @@ import Section from '@/components/Section'
 
 export default function Home() {
   return (
-    <div>
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <Section>
-        <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Akaran Sivakumar</h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Cognitive science–trained data scientist working at the intersection of behavior, language, and intelligent systems.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/projects" className="btn">
-              View Projects
-            </Link>
-            <a href="#" className="btn bg-gray-200 text-gray-800 hover:bg-gray-300">
-              Download CV
-            </a>
+      <Section className="py-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Akaran Sivakumar
+              </h1>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                Data scientist bridging cognitive science and machine learning to build systems that understand human behavior and language.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/projects" className="inline-flex items-center px-6 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors">
+                  View Projects
+                </Link>
+                <Link href="/contact" className="inline-flex items-center px-6 py-3 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 transition-colors">
+                  Get In Touch
+                </Link>
+              </div>
+            </div>
+            <div className="lg:text-right">
+              <div className="text-sm text-gray-400 font-mono space-y-2">
+                <div>Current Focus:</div>
+                <div>• ML Engineering</div>
+                <div>• Behavioral Analytics</div>
+                <div>• NLP Systems</div>
+                <div>• Experimental Design</div>
+              </div>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* Summary */}
-      <Section>
+      {/* What I Do */}
+      <Section className="py-20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-4">What I Do</h2>
-          <p className="text-lg leading-relaxed mb-6">
-            I combine experimental rigor from cognitive science with practical data science and AI/ML techniques.
-            My work focuses on understanding human behavior through data, building intelligent systems that learn from language and interaction,
-            and creating user experiences that are both effective and ethical.
-          </p>
+          <h2 className="text-3xl font-bold text-white mb-8">Approach</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Systems Thinking</h3>
+              <p className="text-gray-300 leading-relaxed">
+                I approach problems through the lens of interconnected systems, combining cognitive science principles with rigorous data analysis to understand complex behavioral patterns.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Technical Rigor</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Every solution begins with experimental validation, statistical grounding, and careful consideration of edge cases before scaling to production systems.
+              </p>
+            </div>
+          </div>
         </div>
       </Section>
 
       {/* Skills and Tools */}
-      <Section>
+      <Section className="py-20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6">Key Skills & Tools</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 className="text-3xl font-bold text-white mb-12">Capabilities</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-lg font-medium mb-3">Skills</h3>
-              <ul className="space-y-2">
-                <li>• Data Analysis & Visualization</li>
-                <li>• Machine Learning & NLP</li>
-                <li>• Experimental Design</li>
-              </ul>
+              <h3 className="text-xl font-semibold text-white mb-6">Core Skills</h3>
+              <div className="space-y-3 text-gray-300">
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-gray-500 rounded-full mr-3"></span>
+                  Machine Learning Engineering
+                </div>
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-gray-500 rounded-full mr-3"></span>
+                  Natural Language Processing
+                </div>
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-gray-500 rounded-full mr-3"></span>
+                  Behavioral Data Analysis
+                </div>
+                <div className="flex items-center">
+                  <span className="w-2 h-2 bg-gray-500 rounded-full mr-3"></span>
+                  Experimental Design
+                </div>
+              </div>
             </div>
             <div>
-              <h3 className="text-lg font-medium mb-3">Tools</h3>
-              <ul className="space-y-2">
-                <li>• Python (Pandas, Scikit-learn, TensorFlow)</li>
-                <li>• R for Statistical Analysis</li>
-                <li>• SQL & NoSQL Databases</li>
-              </ul>
+              <h3 className="text-xl font-semibold text-white mb-6">Technical Stack</h3>
+              <div className="space-y-3 text-gray-300 font-mono text-sm">
+                <div>Python • scikit-learn, TensorFlow, PyTorch</div>
+                <div>R • Statistical Modeling, Visualization</div>
+                <div>SQL • PostgreSQL, BigQuery</div>
+                <div>Cloud • AWS, GCP, Vercel</div>
+              </div>
             </div>
           </div>
         </div>
