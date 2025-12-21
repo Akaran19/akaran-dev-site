@@ -101,7 +101,7 @@ export default function Home() {
       <Section className="py-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-6">Have a project in mind?</h2>
-          <p className="text-xl text-gray-300 mb-8">I'm available to work!</p>
+          <p className="text-xl text-gray-300 mb-8">I&apos;m available to work!</p>
           <Link href="/contact" className="inline-flex items-center px-8 py-4 bg-white text-black font-semibold hover:bg-gray-200 transition-colors text-lg">
             Contact Me
           </Link>
