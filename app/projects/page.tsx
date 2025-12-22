@@ -4,18 +4,32 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Projects – Akaran Sivakumar',
-  description: 'Explore my data science, AI/ML, and cognitive science projects including agent-based models, NLP analysis, and experimental research.',
+  description: 'Explore data science projects focused on decision-making under uncertainty, behavioral analysis, and statistical modeling.',
 }
 
 const projects = [
   {
-    title: 'Rapid Recall - LUBS2850 Marketing Quiz',
-    problem: 'How to make marketing concepts engaging and memorable?',
-    description: 'Interactive educational mini-game for mastering LUBS2850 Marketing concepts. Built with modern web technologies, featuring a Kahoot-style interface, persistent leaderboards, and responsive glassmorphism design.',
-    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Firebase Firestore'],
-    slug: 'rapid-recall-marketing-quiz',
-    demoUrl: 'https://akaran19.github.io/LUBS2850_flashcards/',
-    faviconUrl: 'https://akaran19.github.io/LUBS2850_flashcards/rapid-recall-favicon.svg'
+    title: 'World Cup Twitter Sentiment Analysis',
+    problem: 'Understanding public sentiment during major sporting events',
+    description: 'Analyzed millions of tweets during the 2022 World Cup to track sentiment patterns, fan engagement, and cultural reactions across different demographics.',
+    techStack: ['Python', 'Tweepy', 'NLTK', 'TextBlob'],
+    slug: 'world-cup-sentiment'
+  },
+  {
+    title: 'Generative Agent-Based Model of Language Adoption',
+    problem: 'How do languages evolve and spread in populations?',
+    description: 'BSc thesis exploring computational models of language change using agent-based simulations. Implemented evolutionary algorithms to model linguistic adaptation and cultural transmission.',
+    techStack: ['Python', 'NetworkX', 'Pandas', 'Matplotlib'],
+    slug: 'generative-agent-model'
+  },
+  {
+    title: 'Peerly.io – Paper Review Platform',
+    problem: 'Streamlining academic peer review process',
+    description: 'Built a web platform for managing academic paper submissions and reviews, featuring real-time collaboration and automated matching algorithms.',
+    techStack: ['React', 'Supabase', 'TypeScript', 'Tailwind CSS'],
+    slug: 'peerly-platform',
+    demoUrl: 'https://peerly.io',
+    faviconUrl: 'https://peerly.io/favicon.ico'
   },
   {
     title: 'Credit Risk Modeling System',
@@ -26,18 +40,11 @@ const projects = [
     demoUrl: 'https://akaran.dev/credit-risk',
   },
   {
-    title: 'Generative Agent-Based Model of Language Adoption',
-    problem: 'How do languages evolve and spread in populations?',
-    description: 'BSc thesis exploring computational models of language change using agent-based simulations. Implemented evolutionary algorithms to model linguistic adaptation and cultural transmission.',
-    techStack: ['Python', 'NetworkX', 'Pandas', 'Matplotlib'],
-    slug: 'generative-agent-model'
-  },
-  {
-    title: 'World Cup Twitter Sentiment Analysis',
-    problem: 'Understanding public sentiment during major sporting events',
-    description: 'Analyzed millions of tweets during the 2022 World Cup to track sentiment patterns, fan engagement, and cultural reactions across different demographics.',
-    techStack: ['Python', 'Tweepy', 'NLTK', 'TextBlob'],
-    slug: 'world-cup-sentiment'
+    title: 'Topic Modelling Cognitive Science Syllabus',
+    problem: 'What topics dominate modern cognitive science curricula?',
+    description: 'Applied LDA and BERT-based topic modeling to analyze course syllabi from top cognitive science programs, revealing trends in research focus areas.',
+    techStack: ['Python', 'scikit-learn', 'BERT', 'Gensim'],
+    slug: 'topic-modelling-syllabus'
   },
   {
     title: 'Pac-Man Eye-Tracking & Cognitive Load',
@@ -47,21 +54,14 @@ const projects = [
     slug: 'pacman-eye-tracking'
   },
   {
-    title: 'Topic Modelling Cognitive Science Syllabus',
-    problem: 'What topics dominate modern cognitive science curricula?',
-    description: 'Applied LDA and BERT-based topic modeling to analyze course syllabi from top cognitive science programs, revealing trends in research focus areas.',
-    techStack: ['Python', 'scikit-learn', 'BERT', 'Gensim'],
-    slug: 'topic-modelling-syllabus'
+    title: 'Rapid Recall - LUBS2850 Marketing Quiz',
+    problem: 'How to make marketing concepts engaging and memorable?',
+    description: 'Interactive educational mini-game for mastering LUBS2850 Marketing concepts. Built with modern web technologies, featuring a Kahoot-style interface, persistent leaderboards, and responsive glassmorphism design.',
+    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Firebase Firestore'],
+    slug: 'rapid-recall-marketing-quiz',
+    demoUrl: 'https://akaran19.github.io/LUBS2850_flashcards/',
+    faviconUrl: 'https://akaran19.github.io/LUBS2850_flashcards/rapid-recall-favicon.svg'
   },
-  {
-    title: 'Peerly.io – Paper Review Platform',
-    problem: 'Streamlining academic peer review process',
-    description: 'Built a web platform for managing academic paper submissions and reviews, featuring real-time collaboration and automated matching algorithms.',
-    techStack: ['React', 'Supabase', 'TypeScript', 'Tailwind CSS'],
-    slug: 'peerly-platform',
-    demoUrl: 'https://peerly.io',
-    faviconUrl: 'https://peerly.io/favicon.ico'
-  }
 ]
 
 export default function Projects() {

@@ -19,10 +19,10 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Akaran Sivakumar – Data & Cognitive Science',
-  description: 'Personal website of Akaran Sivakumar, a data scientist with background in cognitive science.',
+  title: 'Akaran Sivakumar – Decision-Focused Data Scientist',
+  description: 'Data scientist specializing in decision-making under uncertainty using behavioral data, statistical modeling, and experimentation.',
   icons: {
-    icon: '/favicon.svg',
+    icon: '/favicon.png',
   },
 }
 
