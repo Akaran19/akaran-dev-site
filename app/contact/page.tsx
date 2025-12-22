@@ -16,7 +16,7 @@ export default function Contact() {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl font-semibold text-white mb-4">Send a Message</h2>
-            <p className="text-gray-300">I'd love to hear about your project or opportunity. Let's connect!</p>
+            <p className="text-gray-300">I&apos;d love to hear about your project or opportunity. Let&apos;s connect!</p>
           </div>
 
           <ContactForm />
