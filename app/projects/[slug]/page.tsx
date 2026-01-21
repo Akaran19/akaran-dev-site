@@ -25,7 +25,7 @@ const projectDetails: Record<string, {
     problem: 'How to assess credit risk using machine learning?',
     description: 'Built a complete credit risk modeling system from scratch using Python and machine learning.',
     techStack: ['Python', 'Scikit-learn', 'Flask', 'Machine Learning'],
-    content: 'This project demonstrates a complete end-to-end data science workflow for credit risk assessment. Starting with real-world financial data processing, the system applies machine learning techniques to evaluate credit risk. Key features include handling imbalanced datasets, model training with Scikit-learn, and an interactive web application for credit risk evaluation. The project serves as both a practical tool and a learning resource for data science beginners and interview preparation.',
+    content: 'This project demonstrates a complete end-to-end data science workflow for credit risk assessment. Starting with real-world financial data processing, the system applies machine learning techniques to evaluate credit risk. Key features include handling imbalanced datasets, model training with Scikit-learn, and an interactive web application for credit risk evaluation. The project serves as both a practical tool and a learning resource for data science beginners and interview preparation. The dataset used is the <a href="https://www.kaggle.com/datasets/kabure/german-credit-data-with-risk?resource=download" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">German Credit Data from Kaggle</a>, and all values and predictions are derived from this dataset.',
     demoUrl: 'https://akaran.dev/credit-risk'
   },
   'generative-agent-model': {
@@ -130,8 +130,23 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </a>
           </div>
         )}
+        {project.demoUrl && (
+          <div className="mt-4 mb-8">
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              Visit Website
+            </a>
+          </div>
+        )}
         <div className="prose max-w-none">
-          <p>{project.content}</p>
+          <p dangerouslySetInnerHTML={{ __html: project.content }}></p>
         </div>
         {project.papers && project.papers.length > 0 && (
           <div className="mt-8">

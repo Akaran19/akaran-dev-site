@@ -9,9 +9,10 @@ interface ProjectCardProps {
   slug: string
   demoUrl?: string
   faviconUrl?: string
+  datasetUrl?: string
 }
 
-export default function ProjectCard({ title, problem, description, techStack, slug, demoUrl, faviconUrl }: ProjectCardProps) {
+export default function ProjectCard({ title, problem, description, techStack, slug, demoUrl, faviconUrl, datasetUrl }: ProjectCardProps) {
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-600 transition-colors">
       <Link href={`/projects/${slug}`} className="block">
@@ -57,9 +58,19 @@ export default function ProjectCard({ title, problem, description, techStack, sl
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-gray-400 hover:text-white text-sm font-mono transition-colors"
+            className="inline-flex items-center text-gray-400 hover:text-white text-sm font-mono transition-colors mr-4"
           >
             Live Demo →
+          </a>
+        )}
+        {datasetUrl && (
+          <a
+            href={datasetUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-gray-400 hover:text-white text-sm font-mono transition-colors"
+          >
+            Dataset →
           </a>
         )}
       </div>

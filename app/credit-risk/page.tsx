@@ -67,6 +67,10 @@ export default function CreditRiskPage() {
         </h1>
         <p style={{ textAlign: "center", color: "#7f8c8d", marginBottom: "30px" }}>
           Enter the applicant details below to predict credit risk assessment.
+          <br />
+          <small style={{ fontSize: "12px", color: "#95a5a6" }}>
+            Dataset: German Credit Data from Kaggle (<a href="https://www.kaggle.com/datasets/kabure/german-credit-data-with-risk?resource=download" target="_blank" rel="noopener noreferrer" style={{ color: "#667eea" }}>link</a>)
+          </small>
         </p>
 
         <form onSubmit={handleSubmit}>
