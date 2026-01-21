@@ -47,10 +47,10 @@ const projects = [
     slug: 'topic-modelling-syllabus'
   },
   {
-    title: 'Pac-Man Eye-Tracking & Cognitive Load',
+    title: 'Eyes on the Prize - Investigating Cognitive Load in Pac-Man Gameplay through Eye Tracking',
     problem: 'How does cognitive load affect decision-making in games?',
-    description: 'Conducted eye-tracking experiments with participants playing Pac-Man under different cognitive load conditions to study attention patterns and decision strategies.',
-    techStack: ['R', 'EyeLink', 'PsychoPy', 'ggplot2'],
+    description: 'Current attention levels in society have caused a shift in the media consumed and games played. Everything must be shorter, and less taxing cognitively. This study aims to investigate the major cultural trend in the 1980s, the arcade game Ms. Pac-Man, to try and deduce what made the game a global sensation. We investigated cognitive load dynamics through player gaze behaviour.',
+    techStack: ['Python', 'CatEyes', 'OpenCV', 'Matplotlib', 'Statsmodels', 'EyeLink', 'ALE'],
     slug: 'pacman-eye-tracking'
   },
   {
@@ -61,6 +61,13 @@ const projects = [
     slug: 'rapid-recall-marketing-quiz',
     demoUrl: 'https://akaran19.github.io/LUBS2850_flashcards/',
     faviconUrl: 'https://akaran19.github.io/LUBS2850_flashcards/rapid-recall-favicon.svg'
+  },
+  {
+    title: 'AI Snake Game with Reinforcement Learning',
+    problem: 'How can AI learn to play games optimally?',
+    description: 'An intelligent Snake game implementation where an AI agent learns optimal gameplay strategies through reinforcement learning algorithms. The project demonstrates how machine learning can master classic games by training neural networks to maximize scores and avoid collisions, showcasing practical applications of AI in game environments.',
+    techStack: ['Python', 'PyTorch', 'NumPy', 'Pygame'],
+    slug: 'ai-snake'
   },
 ]
 

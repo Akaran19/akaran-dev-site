@@ -43,11 +43,11 @@ const projectDetails: Record<string, {
     content: 'Collected and analyzed real-time Twitter data during the tournament, identifying sentiment trends and cultural reactions across different fan bases and demographics.'
   },
   'pacman-eye-tracking': {
-    title: 'Pac-Man Eye-Tracking & Cognitive Load',
+    title: 'Eyes on the Prize - Investigating Cognitive Load in Pac-Man Gameplay through Eye Tracking',
     problem: 'How does cognitive load affect decision-making in games?',
-    description: 'Conducted eye-tracking experiments with participants playing Pac-Man.',
-    techStack: ['R', 'EyeLink', 'PsychoPy', 'ggplot2'],
-    content: 'Participants played Pac-Man while performing secondary tasks of varying difficulty. Eye movement patterns revealed how cognitive load influences spatial attention and decision-making strategies.',
+    description: 'Current attention levels in society have caused a shift in the media consumed and games played. Everything must be shorter, and less taxing cognitively. This study aims to investigate the major cultural trend in the 1980s, the arcade game Ms. Pac-Man, to try and deduce what made the game a global sensation. We investigated cognitive load dynamics through player gaze behaviour.',
+    techStack: ['Python', 'CatEyes', 'OpenCV', 'Matplotlib', 'Statsmodels', 'EyeLink', 'ALE'],
+    content: 'The data used in this project is part of a large-scale dataset, created to conduct reinforcement and imitation learning. The dataset is named Atari-HEAD (Atari Human Eye-tracking And Demonstration). The precursor to this dataset is the Atari Grand Challenge, a large-scale public dataset of human demonstration collected through online crowdsourcing with players of diverse skill levels. The dataset was created hoping to allow researchers to study the relation between attention and decision. The data was collected using the Arcade Learning Environment (ALE) (Bellemare et al., 2013). This structure allows for capturing of many interesting aspects of natural visuomotor tasks while allowing better experimental control than real-world tasks. The use of ALE is deterministic given the same game seed. The seed was however randomly generated to introduce stochasticity for gameplay. The Arcade Learning Environment (ALE) was created to evaluate general, domain-independent AI technology. ALE offers the opportunity for models, machine learning and reinforcement learning to be tested on Atari 2600 games, which are seen as challenging and interesting even for human players. ALE allows for the development and benchmarking of domain-independent agents on over 55 different games, showcasing the potential of established AI techniques in the realm of perception and action (Bellemare et al., 2013). Ms. Pac-Man, a classic maze-chase game released in 1981, serves as an influential case study in perception and action. Developed by Namco as a sequel to the original Pac-Man, Ms. Pac-Man introduced dynamic improvements, including faster gameplay and intricate ghost movement patterns. This game was a cultural phenomenon, that contributed significantly to the 1980s arcade gaming scene. We have chosen to investigate Ms. Pac-Man as it offers a dynamic maze environment, perfect for exploring decision-making, attentional shifts, and cognitive load. For every game image frame i, we recorded its corresponding image frame Ii, human keystroke action ai, human decision time ti, gaze positions gi1…gin, and the immediate reward ri returned by the environment. The game screen was 64.6 × 40.0 cm (or 1280 × 840 in pixels), and the distance to the subjects\' eyes was 78.7 cm. The human subjects were amateur players who were familiar with the games. The data contains 4 subjects playing 20 different Atari games. This report will only focus on the gameplay of the Atari 2600 game, Ms. Pac-Man. The total game time is 4.87 hours, with 353,428 usable gaze samples. The subjects were only allowed to play for 15 minutes and were required to rest for at least 15 minutes before the next trial. The trials are all 15 minutes as the current literature does not yet propose any AIs that reach human performance by 15 minutes. The gaze data was recorded using an EyeLink 1000 eye tracker at 1000 Hz. The EyeLink 1000 tracker was calibrated using a 16-point calibration procedure at the beginning of each trial, and the same 16 points were used at the end of the trial to estimate the gaze positional error. The average end-of-trial gaze positional error across 471 trials was 0.4 cm (2.1 pixels), less than 1% of the stimulus size. Such high tracking accuracy is necessary when dealing with Atari games since many OOI (objects of interest) are small and hard to track without high-quality equipment. To optimize the dataset for imitation learning (IL), the Arcade Learning Environment (ALE) default setting, challenging for expert players at 60 Hz, was adjusted. In the new setup, the game pauses at each frame until a keyboard action is taken, allowing subjects to hold a key for continuous play at a more comfortable 20Hz. This change resolves issues such as state-action mismatch, aligning actions with states at each time step and enhancing compatibility with supervised learning algorithms. The semi-frame-by-frame mode also aims to relax gameplay, reduce fatigue, and minimize suboptimal decisions due to inattentive blindness. By recording human decision time and eye movements at every frame, the dataset ensures capturing states requiring sophisticated planning, contributing to effective learning algorithms. The data was downloaded from the Arxiv Library (Zhang et al., 2019) on 29th November 2023. The data was then pre-processed which included creating a temporally ordered .csv file and downsampling the data from 1000 Hz to 50 Hz. This was chosen, as Ms. Pac-Man in the ALE can at the highest speed run at 20 Hz, which makes using eye tracking data at 1000 Hz seem redundant. The python package CatEyes (Gütlin, 2021/2021) was then used to classify fixations, saccades, smooth pursuits and PSOs (Post-saccadic oscillations). The method of eye-movement signal segmentation and event classification used is NSLR-HMM (Naïve Segmented Linear Regression - Hidden Markov Models). Unlike traditional workflows, NSLR integrates denoising into segmentation, making it the initial step in the analysis. Classification is then performed on denoised segments. This versatile approach identifies fixations, saccades, smooth pursuits, and post-saccadic oscillations, accommodating experiments with complex gaze behaviour. This allows it to be directly applied to noisy data, yielding robust gaze position and velocity estimates for both high-quality lab data and challenging mobile data on natural gaze behaviour, requiring minimal manual parameter setting as it autonomously estimates signal noise levels and gaze feature parameters from human classification examples (Pekkanen & Lappi, 2017). During the data analysis phase, the obtained game frames from the trials underwent processing using the OpenCV Python package (Bradski, 2000), to precisely localize ghosts and Pac-Man in each frame. This was feasible due to the distinct colour palette of retro game consoles like Atari, where colours for Objects of Interest (OOI) are intentionally different, as the console follows a 128-color palette. The localized positions were then utilized to calculate the distances between ghosts and Pac-Man, as well as between gaze location and Pac-Man, and gaze location and ghosts. This made it possible to create a novel variable named \'gaze_location\', that specifies whether the participant is looking at Pac-Man, a ghost, or neither. This \'gaze_location\' variable was then investigated temporally. Proportions of time spent looking at each value in \'gaze_location\' were calculated for 10-second intervals, and the temporal dynamics of gaze location were visually inspected using the Matplotlib Python package (Hunter, 2007). Next, the average fixation durations were plotted in 5-second intervals to address the hypothesis related to fixation duration and cognitive load. An ordinary least-squares linear regression model was hypothesized, treating fixation duration as the dependent variable, with time since the start of the trial and distance to Pac-Man as predictor variables. This model, created using the Statsmodels Python package (Seabold & Perktold, 2010), revealed that the distance to Pac-Man and the time since the start of the trial both had a significant impact on fixation duration. Finally, we explored the correlation between gaze location and Pac-Man\'s location temporally, due to the discoveries made in the prior step. The temporal dynamics were then plotted over one-minute intervals.',
     githubUrl: 'https://github.com/Akaran19/PercAct-exam'
   },
   'topic-modelling-syllabus': {
@@ -65,6 +65,14 @@ const projectDetails: Record<string, {
     techStack: ['React', 'Supabase', 'TypeScript', 'Tailwind CSS'],
     content: 'Developed a full-stack application with real-time notifications, automated reviewer matching based on expertise, and collaborative review workflows.',
     demoUrl: 'https://peerly.io'
+  },
+  'ai-snake': {
+    title: 'AI Snake Game with Reinforcement Learning',
+    problem: 'How can AI learn to play games optimally?',
+    description: 'An intelligent Snake game implementation where an AI agent learns optimal gameplay strategies through reinforcement learning algorithms.',
+    techStack: ['Python', 'PyTorch', 'NumPy', 'OpenAI Gym'],
+    content: 'This project implements an AI-powered Snake game using reinforcement learning. The AI agent is trained using deep Q-learning to navigate the game board, collect food, and avoid obstacles. Built with PyTorch for neural network training and OpenAI Gym for the game environment, it demonstrates practical applications of machine learning in gaming and showcases how AI can master classic arcade games through iterative learning.',
+    githubUrl: 'https://github.com/Akaran19/AI_snake'
   }
 }
 
@@ -94,26 +102,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </span>
           ))}
         </div>
-        <div className="prose max-w-none">
-          <p>{project.content}</p>
-        </div>
-        {project.demoUrl && (
-          <div className="mt-8">
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              View Live Demo
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-          </div>
-        )}
         {project.githubUrl && (
-          <div className="mt-4">
+          <div className="mt-4 mb-8">
             <a
               href={project.githubUrl}
               target="_blank"
@@ -127,6 +117,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </a>
           </div>
         )}
+        <div className="prose max-w-none">
+          <p>{project.content}</p>
+        </div>
       </div>
     </Section>
   )
