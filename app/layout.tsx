@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import Spotlight from '@/components/Spotlight'
+import AppShell from '@/components/AppShell'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -19,6 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://akaran.dev'),
   title: 'Akaran Sivakumar – Decision-Focused Data Scientist',
   description: 'Data scientist specializing in decision-making under uncertainty using behavioral data, statistical modeling, and experimentation.',
   icons: {
@@ -34,12 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={jetbrainsMono.variable}>
       <body className={`${inter.className} bg-[#0a0a0a] text-white min-h-screen relative`}>
-        <Spotlight />
-        <Navbar />
-        <main className="min-h-screen relative z-10">
-          {children}
-        </main>
-        <Footer />
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   )

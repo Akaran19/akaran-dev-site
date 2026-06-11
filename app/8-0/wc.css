@@ -1,0 +1,136 @@
+/* Scoped visual styling for the 8-0 World Cup Draft game. */
+
+.wc-root {
+  --pitch-line: rgba(245, 240, 225, 0.18);
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(30, 58, 138, 0.45), transparent 60%),
+    radial-gradient(900px 500px at 90% 110%, rgba(45, 106, 46, 0.25), transparent 60%),
+    linear-gradient(180deg, #0a1128 0%, #0f1a36 55%, #0a1128 100%);
+  background-attachment: fixed;
+  color: #f5f0e1;
+  font-family: var(--font-body), 'Outfit', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.wc-root ::selection {
+  background: rgba(212, 168, 67, 0.35);
+  color: #fafaf8;
+}
+
+/* Subtle stadium texture overlay */
+.wc-texture::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(245, 240, 225, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.wc-display {
+  font-family: var(--font-display), 'Oswald', sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.wc-gold-text {
+  background: linear-gradient(180deg, #ffe9a8 0%, #d4a843 55%, #b8862f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.wc-gold-line {
+  background: linear-gradient(90deg, transparent, #d4a843, transparent);
+}
+
+.wc-glass {
+  background: rgba(27, 45, 91, 0.4);
+  border: 1px solid rgba(212, 168, 67, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.wc-glass-strong {
+  background: rgba(15, 26, 54, 0.78);
+  border: 1px solid rgba(212, 168, 67, 0.28);
+  backdrop-filter: blur(14px);
+}
+
+/* Trophy / gold button */
+.wc-btn-gold {
+  background: linear-gradient(180deg, #f0d486 0%, #d4a843 55%, #b8862f 100%);
+  color: #0a1128;
+  font-weight: 700;
+  box-shadow: 0 6px 24px rgba(212, 168, 67, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.wc-btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(212, 168, 67, 0.5);
+  filter: brightness(1.05);
+}
+.wc-btn-gold:active {
+  transform: translateY(0);
+}
+
+.wc-btn-ghost {
+  background: rgba(245, 240, 225, 0.04);
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  color: #f5f0e1;
+  transition: all 0.18s ease;
+}
+.wc-btn-ghost:hover {
+  background: rgba(212, 168, 67, 0.12);
+  border-color: rgba(212, 168, 67, 0.6);
+}
+
+/* Pitch with painted lines */
+.wc-pitch {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      #2d6a2e 0px,
+      #2d6a2e 40px,
+      #2f712f 40px,
+      #2f712f 80px
+    );
+  position: relative;
+  overflow: hidden;
+}
+.wc-pitch-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Shimmering placeholder for spinning */
+.wc-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(212, 168, 67, 0.06) 25%,
+    rgba(212, 168, 67, 0.18) 50%,
+    rgba(212, 168, 67, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Custom scrollbar within the game */
+.wc-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.wc-scroll::-webkit-scrollbar-track { background: rgba(10, 17, 40, 0.4); }
+.wc-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 168, 67, 0.35);
+  border-radius: 8px;
+}
+.wc-scroll::-webkit-scrollbar-thumb:hover { background: rgba(212, 168, 67, 0.6); }
+
+@media (prefers-reduced-motion: reduce) {
+  .wc-shimmer { animation: none; }
+}
