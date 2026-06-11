@@ -9,6 +9,14 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: '8-0 — World Cup Draft Game',
+    problem: 'Can you build the perfect World Cup XI from history?',
+    description: 'Spin through 10 World Cups, draft legendary players one at a time, set your formation, then simulate eight matches. Can you go a perfect eight-and-oh?',
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    slug: '8-0-world-cup-draft',
+    demoUrl: '/8-0',
+  },
+  {
     title: 'World Cup Twitter Sentiment Analysis',
     problem: 'Understanding public sentiment during major sporting events',
     description: 'Analyzed millions of tweets during the 2022 World Cup to track sentiment patterns, fan engagement, and cultural reactions across different demographics.',

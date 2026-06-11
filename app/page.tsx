@@ -108,6 +108,31 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* 8-0 World Cup Game — featured first */}
+            <div className="bg-gray-900 border border-yellow-500/30 rounded-lg p-6 hover:border-yellow-500/60 transition-colors">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-mono uppercase tracking-wider text-yellow-400 border border-yellow-500/30 rounded px-2 py-0.5">Game</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-4">8-0 — World Cup Draft</h3>
+              <div className="space-y-3 text-sm">
+                <div>
+                  <span className="text-gray-400 font-mono">Concept:</span>
+                  <span className="text-gray-300 ml-2">Draft a dream XI from World Cup history and simulate the run to glory</span>
+                </div>
+                <div>
+                  <span className="text-gray-400 font-mono">Scope:</span>
+                  <span className="text-gray-300 ml-2">6,400+ players across 73 nations and 10 World Cups</span>
+                </div>
+                <div>
+                  <span className="text-gray-400 font-mono">Goal:</span>
+                  <span className="text-gray-300 ml-2">Win all eight matches for a perfect 8-0 run on the leaderboard</span>
+                </div>
+              </div>
+              <Link href="/8-0" className="inline-flex items-center mt-4 text-yellow-400 hover:text-yellow-300 text-sm transition-colors">
+                Play now →
+              </Link>
+            </div>
+
             {/* Project 1 */}
             <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 hover:border-gray-500 transition-colors">
               <h3 className="text-lg font-semibold text-white mb-4">World Cup Sentiment Analysis</h3>

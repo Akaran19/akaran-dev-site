@@ -15,12 +15,15 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-8 items-center">
             <Link href="/" className="text-gray-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-gray-600 pb-1">Home</Link>
             <Link href="/projects" className="text-gray-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-gray-600 pb-1">Projects</Link>
             <Link href="/writing" className="text-gray-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-gray-600 pb-1">Writing</Link>
             <Link href="/about" className="text-gray-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-gray-600 pb-1">About</Link>
             <Link href="/contact" className="text-gray-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-gray-600 pb-1">Contact</Link>
+            <Link href="/8-0" className="px-3 py-1 text-sm font-semibold text-yellow-300 border border-yellow-500/40 rounded hover:bg-yellow-500/10 transition-colors">
+              🏆 8-0
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -44,6 +47,9 @@ export default function Navbar() {
               <Link href="/writing" className="text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Writing</Link>
               <Link href="/about" className="text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>About</Link>
               <Link href="/contact" className="text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Contact</Link>
+              <Link href="/8-0" className="inline-flex w-fit px-3 py-1 text-sm font-semibold text-yellow-300 border border-yellow-500/40 rounded hover:bg-yellow-500/10 transition-colors" onClick={() => setIsOpen(false)}>
+                🏆 8-0
+              </Link>
             </div>
           </div>
         )}

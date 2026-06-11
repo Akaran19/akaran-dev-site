@@ -54,14 +54,23 @@ export default function ProjectCard({ title, problem, description, techStack, sl
         </div>
 
         {demoUrl && (
-          <a
-            href={demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-gray-400 hover:text-white text-sm font-mono transition-colors mr-4"
-          >
-            Live Demo →
-          </a>
+          demoUrl.startsWith('/') ? (
+            <Link
+              href={demoUrl}
+              className="inline-flex items-center text-gray-400 hover:text-white text-sm font-mono transition-colors mr-4"
+            >
+              Play →
+            </Link>
+          ) : (
+            <a
+              href={demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-gray-400 hover:text-white text-sm font-mono transition-colors mr-4"
+            >
+              Live Demo →
+            </a>
+          )
         )}
         {datasetUrl && (
           <a

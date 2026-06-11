@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import Section from '@/components/Section'
 
 const projectDetails: Record<string, {
@@ -86,6 +87,14 @@ const projectDetails: Record<string, {
     techStack: ['Python', 'PyTorch', 'NumPy', 'OpenAI Gym'],
     content: 'This project implements an AI-powered Snake game using reinforcement learning. The AI agent is trained using deep Q-learning to navigate the game board, collect food, and avoid obstacles. Built with PyTorch for neural network training and OpenAI Gym for the game environment, it demonstrates practical applications of machine learning in gaming and showcases how AI can master classic arcade games through iterative learning.',
     githubUrl: 'https://github.com/Akaran19/AI_snake'
+  },
+  '8-0-world-cup-draft': {
+    title: '8-0 — World Cup Draft Game',
+    problem: 'Can you build the perfect World Cup XI from history?',
+    description: 'Spin through 10 World Cups, draft legendary players one at a time, set your formation, then simulate eight matches to glory.',
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    content: 'A fully interactive World Cup draft game built entirely within this Next.js portfolio. Pick a formation from seven options, then spin a wheel to land on a random nation and World Cup year — draft one player from that squad and spin again until your XI is complete. The simulation engine runs eight matches (group stage through the Final) with ratings, chemistry bonuses, and weighted randomness. A perfect run — eight wins and zero losses — earns a spot on the persistent leaderboard. The player database covers over 6,400 players across 73 nations and 10 World Cups. Two modes are available: Classic (ratings visible) and World Cup IQ (ratings hidden — trust your knowledge).',
+    demoUrl: '/8-0'
   }
 }
 
@@ -132,17 +141,30 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         )}
         {project.demoUrl && (
           <div className="mt-4 mb-8">
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-              Visit Website
-            </a>
+            {project.demoUrl.startsWith('/') ? (
+              <Link
+                href={project.demoUrl}
+                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Play Game
+              </Link>
+            ) : (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Visit Website
+              </a>
+            )}
           </div>
         )}
         <div className="prose max-w-none">
