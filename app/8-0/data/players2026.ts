@@ -117,16 +117,6 @@ const ROWS: Row[] = [
   ['BEL', 'Belgium', 'Thibaut Courtois', 'GK', 89],
   ['BEL', 'Belgium', 'Wout Faes', 'CB', 80],
   ['BEL', 'Belgium', 'Timothy Castagne', 'RB', 80],
-  // Italy
-  ['ITA', 'Italy', 'Gianluigi Donnarumma', 'GK', 88],
-  ['ITA', 'Italy', 'Federico Chiesa', 'RW', 84],
-  ['ITA', 'Italy', 'Nicolò Barella', 'CM', 87],
-  ['ITA', 'Italy', 'Sandro Tonali', 'CM', 84],
-  ['ITA', 'Italy', 'Alessandro Bastoni', 'CB', 86],
-  ['ITA', 'Italy', 'Giovanni Di Lorenzo', 'RB', 83],
-  ['ITA', 'Italy', 'Federico Dimarco', 'LB', 84],
-  ['ITA', 'Italy', 'Riccardo Calafiori', 'CB', 83],
-  ['ITA', 'Italy', 'Mateo Retegui', 'ST', 82],
   // Croatia
   ['HRV', 'Croatia', 'Luka Modrić', 'CM', 84],
   ['HRV', 'Croatia', 'Mateo Kovačić', 'CM', 84],

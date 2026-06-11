@@ -5,9 +5,11 @@ import {
   type DraftedPlayer,
   type FormationSlot,
   type PositionGroup,
+  type Position,
   type SpinCombo,
   getFormation,
   MAX_SKIPS,
+  PLAYER_CAN_FILL,
 } from './types';
 import { ALL_COMBOS, getSquad } from '../data/players';
 
@@ -46,31 +48,33 @@ export function remainingNeeds(state: DraftState): Record<PositionGroup, number>
   return needs;
 }
 
-/** Position groups that the team still needs at least one of. */
-function neededGroups(state: DraftState): Set<PositionGroup> {
-  const needs = remainingNeeds(state);
-  return new Set(
-    (Object.keys(needs) as PositionGroup[]).filter((g) => needs[g] > 0),
-  );
+/** Set of slot labels (e.g. 'LW', 'CM') that are still open. */
+function openSlotLabels(state: DraftState): Set<Position> {
+  return new Set(emptySlots(state).map((s) => s.label));
+}
+
+/** Whether a player can fill at least one still-open slot. */
+function playerFitsAnyOpenSlot(state: DraftState, player: PlayerRecord): boolean {
+  const open = openSlotLabels(state);
+  return PLAYER_CAN_FILL[player.position]?.some((label) => open.has(label)) ?? false;
 }
 
 /**
  * Pick a random combo that hasn't been used yet AND whose squad can contribute
- * at least one player to a still-needed position group. This avoids dead spins.
+ * at least one player to a still-open slot. This avoids dead spins.
  */
 export function pickRandomCombo(state: DraftState): SpinCombo | null {
   const used = new Set(state.usedComboKeys);
-  const groupsNeeded = neededGroups(state);
 
   const candidates = ALL_COMBOS.filter((c) => {
     if (used.has(comboKeyOf(c))) return false;
     const squad = getSquad(c.year, c.countryCode);
     if (squad.length === 0) return false;
-    // squad must have at least one player in a needed group not already drafted
+    // squad must have at least one undrafted player that fits an open slot
     return squad.some(
       (p) =>
-        groupsNeeded.has(p.positionGroup) &&
-        !state.usedPlayerIds.includes(p.id),
+        !state.usedPlayerIds.includes(p.id) &&
+        playerFitsAnyOpenSlot(state, p),
     );
   });
 
@@ -86,18 +90,18 @@ export function pickRandomCombo(state: DraftState): SpinCombo | null {
   return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
-/** Players from a combo that can still be drafted into an open, matching slot. */
+/** Players from a combo that can fill at least one open slot. */
 export function selectableFromCombo(state: DraftState, combo: SpinCombo): PlayerRecord[] {
-  const groupsNeeded = neededGroups(state);
   const drafted = new Set(state.usedPlayerIds);
   return getSquad(combo.year, combo.countryCode)
-    .filter((p) => groupsNeeded.has(p.positionGroup) && !drafted.has(p.id))
+    .filter((p) => !drafted.has(p.id) && playerFitsAnyOpenSlot(state, p))
     .sort((a, b) => b.rating - a.rating);
 }
 
-/** Empty slots a given player is eligible to fill (matched by position group). */
+/** Empty slots a given player is eligible to fill (position-compatibility aware). */
 export function eligibleSlots(state: DraftState, player: PlayerRecord): FormationSlot[] {
-  return emptySlots(state).filter((s) => s.group === player.positionGroup);
+  const canFill = new Set(PLAYER_CAN_FILL[player.position] ?? []);
+  return emptySlots(state).filter((s) => canFill.has(s.label));
 }
 
 /** Record a spin: store the combo as used and set it current. */

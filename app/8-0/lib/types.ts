@@ -121,7 +121,7 @@ export const OPPONENT_STRENGTH: Array<[number, number]> = [
 ];
 
 export const TOTAL_SLOTS = 11;
-export const MAX_SKIPS = 3;
+export const MAX_SKIPS = 1;
 
 // ---------------------------------------------------------------------------
 // Position group helper
@@ -131,6 +131,33 @@ export const POSITION_GROUP: Record<Position, PositionGroup> = {
   CB: 'DEF', LB: 'DEF', RB: 'DEF', LWB: 'DEF', RWB: 'DEF',
   CDM: 'MID', CM: 'MID', CAM: 'MID', LM: 'MID', RM: 'MID',
   LW: 'FWD', RW: 'FWD', ST: 'FWD', CF: 'FWD',
+};
+
+/**
+ * Which formation slot labels a player at each position is eligible to fill.
+ * This replaces the coarse group-based matching with real football flexibility:
+ *   - Wingers (LW/RW) can play either flank, wide-mid, or striker
+ *   - Wide mids (LM/RM) can play winger both sides or central mid
+ *   - Wing-backs fill full-back slots and vice versa
+ *   - CAM can fill CF or winger; CF can fill CAM or winger
+ *   - CDM can fill CM or CB; CM can slide into CDM or CAM
+ */
+export const PLAYER_CAN_FILL: Record<Position, Position[]> = {
+  GK:  ['GK'],
+  CB:  ['CB', 'CDM'],
+  LB:  ['LB', 'LWB'],
+  RB:  ['RB', 'RWB'],
+  LWB: ['LWB', 'LB', 'LM'],
+  RWB: ['RWB', 'RB', 'RM'],
+  CDM: ['CDM', 'CM'],
+  CM:  ['CM', 'CDM', 'CAM'],
+  CAM: ['CAM', 'CM', 'CF', 'LW', 'RW'],
+  LM:  ['LM', 'LW', 'RM', 'RW', 'CM'],
+  RM:  ['RM', 'RW', 'LM', 'LW', 'CM'],
+  LW:  ['LW', 'RW', 'LM', 'RM', 'ST'],
+  RW:  ['RW', 'LW', 'RM', 'LM', 'ST'],
+  ST:  ['ST', 'CF', 'LW', 'RW'],
+  CF:  ['CF', 'ST', 'CAM', 'LW', 'RW'],
 };
 
 const slot = (id: string, label: Position, x: number, y: number): FormationSlot => ({

@@ -26,7 +26,7 @@ const STEPS = [
   {
     n: '04',
     title: 'Use your skips wisely',
-    body: 'Don’t like the options? You get three skips per game to re-spin. Once they’re gone, you draft from whatever the wheel gives you.',
+    body: 'Don\'t like the options? You get one skip per game to re-spin. Once it\'s gone, you draft from whatever the wheel gives you.',
   },
   {
     n: '05',

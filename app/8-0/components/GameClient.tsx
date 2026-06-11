@@ -3,8 +3,8 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import type { GameMode, PlayerRecord, PositionGroup, SimulationResult, SpinCombo } from '../lib/types'
-import { getFormation, MAX_SKIPS, TOTAL_SLOTS } from '../lib/types'
+import type { GameMode, PlayerRecord, PositionGroup, SimulationResult, SpinCombo, Position } from '../lib/types'
+import { getFormation, MAX_SKIPS, TOTAL_SLOTS, PLAYER_CAN_FILL } from '../lib/types'
 import {
   type DraftState,
   createDraft,
@@ -15,6 +15,7 @@ import {
   skipsRemaining,
   selectableFromCombo,
   eligibleSlots,
+  emptySlots,
   placePlayer,
   isComplete,
   filledCount,
@@ -22,6 +23,7 @@ import {
   squadInOrder,
   remainingNeeds,
 } from '../lib/gameLogic'
+import { getSquad } from '../data/players'
 import { simulate } from '../lib/simulation'
 import FormationPicker from './FormationPicker'
 import Pitch from './Pitch'
@@ -194,6 +196,11 @@ export default function GameClient({ mode }: { mode: GameMode }) {
   const complete = isComplete(draft)
   const combo = draft.currentCombo
   const selectable = combo ? selectableFromCombo(draft, combo) : []
+  const selectableIds = new Set(selectable.map((p) => p.id))
+  const openSlotSet = new Set(emptySlots(draft).map((s) => s.label as Position))
+  const fullSquad = combo ? getSquad(combo.year, combo.countryCode).sort((a, b) => b.rating - a.rating) : []
+  const drafted = new Set(draft.usedPlayerIds)
+  const nonSelectable = fullSquad.filter((p) => !selectableIds.has(p.id) && !drafted.has(p.id))
   const eligibleGroups = pendingPlayer
     ? new Set<PositionGroup>([pendingPlayer.positionGroup])
     : undefined
@@ -348,8 +355,29 @@ export default function GameClient({ mode }: { mode: GameMode }) {
                               size="sm"
                               selected={pendingPlayer?.id === p.id}
                               onClick={() => choosePlayer(p)}
+                              slotBadges={(PLAYER_CAN_FILL[p.position] ?? []).filter((l) => openSlotSet.has(l as Position))}
                             />
                           ))}
+                          {nonSelectable.length > 0 && (
+                            <>
+                              {selectable.length > 0 && (
+                                <div className="px-1 pt-1 text-[10px] uppercase tracking-wider text-wc-muted/50">
+                                  Doesn&apos;t fit your formation
+                                </div>
+                              )}
+                              {nonSelectable.map((p) => (
+                                <PlayerCard
+                                  key={p.id}
+                                  player={p}
+                                  mode={mode}
+                                  size="sm"
+                                  disabled
+                                  slotBadges={PLAYER_CAN_FILL[p.position] ?? []}
+                                  badgesDimmed
+                                />
+                              ))}
+                            </>
+                          )}
                         </div>
                       )}
                     </motion.div>

@@ -12,6 +12,29 @@ interface PlayerCardProps {
   disabled?: boolean
   /** Force-show rating even in World Cup IQ mode (used on the results reveal). */
   revealRating?: boolean
+  /** Slot labels this player can fill — rendered as coloured pills on the right. */
+  slotBadges?: string[]
+  /** When true, badges are rendered in muted grey (used for non-selectable players). */
+  badgesDimmed?: boolean
+}
+
+/** Colour per slot based on position group */
+const SLOT_COLOR: Record<string, string> = {
+  GK:  'bg-teal-500/20 text-teal-400 border-teal-500/30',
+  CB:  'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  LB:  'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  RB:  'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  LWB: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  RWB: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  CDM: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+  CM:  'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+  CAM: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+  LM:  'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+  RM:  'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+  LW:  'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  RW:  'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  ST:  'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  CF:  'bg-amber-500/20 text-amber-400 border-amber-500/30',
 }
 
 const ratingTier = (r: number) => {
@@ -29,6 +52,8 @@ export default function PlayerCard({
   selected,
   disabled,
   revealRating,
+  slotBadges,
+  badgesDimmed,
 }: PlayerCardProps) {
   const showRating = mode === 'classic' || revealRating
   const tier = ratingTier(player.rating)
@@ -93,6 +118,24 @@ export default function PlayerCard({
             </div>
           )}
         </div>
+
+        {/* Slot compatibility badges */}
+        {slotBadges && slotBadges.length > 0 && (
+          <div className="ml-2 flex shrink-0 flex-wrap justify-end gap-1" style={{ maxWidth: 72 }}>
+            {slotBadges.map((label) => (
+              <span
+                key={label}
+                className={`rounded border px-1 py-px text-[9px] font-bold uppercase tracking-wide ${
+                  badgesDimmed
+                    ? 'border-white/10 bg-white/5 text-wc-muted/40'
+                    : (SLOT_COLOR[label] ?? 'border-wc-gold/20 bg-wc-gold/10 text-wc-gold-light')
+                }`}
+              >
+                {label}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </Wrapper>
   )

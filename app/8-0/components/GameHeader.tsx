@@ -51,15 +51,6 @@ export default function GameHeader() {
             )
           })}
 
-          {/* Get the App */}
-          <Link
-            href="/8-0"
-            className="hidden rounded-md border border-wc-gold/30 px-3 py-1.5 text-sm font-medium text-wc-gold-light transition-colors hover:bg-wc-gold/10 sm:block"
-            title="Get the App — coming soon"
-          >
-            Get the App
-          </Link>
-
           {/* Feedback */}
           <a
             href="/contact"
